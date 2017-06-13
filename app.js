@@ -1,23 +1,46 @@
 const express = require( 'express' );
 const chalk = require( 'chalk' );
+const nunjucks = require('nunjucks');
 const app = express(); // creates an instance of an express application
 
+app.set('view engine', 'html'); // have res.render work with html files
+app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
+nunjucks.configure('views');
+
+// var locals = {
+//     title: 'An Example',
+//     people: [
+//         { name: 'Gandalf'},
+//         { name: 'Frodo' },
+//         { name: 'Hermione'}
+//     ]
+// };
+//nunjucks.configure('views', {noCache: true});
+// nunjucks.render('index.html', locals, function (err, output) {
+//     console.log(output);
+// });
+
 app.use(function (req, res, next) {
-  console.log('Time:', Date.now()) ;
+  console.log('Time:', Date.now());
     // do your logging here
     // call `next`, or else your app will be a black hole — receiving requests but never properly responding
     next();
 })
 
-app.get('/', function(req, res) { 
-  res.send('this is a sample!'); 
+app.get('/', function(req, res) {
+  // res.send('this is a sample!');
+
+  // res.render(nunjucks.render('index.html', locals, function (err, output) {
+  //   console.log(output);
+  // }));
 });
-app.get('/is-anybody-in-there', function(req, res) { 
-  res.send('this is someone else'); 
+
+app.get('/is-anybody-in-there', function(req, res) {
+  res.send('this is someone else');
 });
-// app.get('/modernism', function (req, res) {
-//   res.send('this is the get')
-// })
+app.get('/modernism', function (req, res) {
+  res.send('this is the get')
+})
 app.post('/modernism', function (req, res) {
   res.send('POST request to the homepage')
 })
