@@ -31,13 +31,8 @@ const getFakeTweet = function() {
   return "Fullstack Academy is " + randArrayEl(awesome_adj) + "! The instructors are just so " + randArrayEl(awesome_adj) + ". #fullstacklove #codedreams";
 };
 
-//for (let i = 0; i < 10; i++) {
-  module.exports.add( "jing","Today is too HOT!!!!" );
-//}
+for (let i = 0; i < 10; i++) {
+  module.exports.add( getFakeName(), getFakeTweet() );
+}
 
-//add("jing","Today is too HOT!!!!")
-
-console.log(find(data,(name)=>{
-  return data.name === "jing";
-}));
-//console.log(data)
+console.log(data);
