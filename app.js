@@ -5,16 +5,16 @@ const app = express(); // creates an instance of an express application
 
 app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
-nunjucks.configure('views');
+nunjucks.configure('views',{noCache: true});
 
-// var locals = {
-//     title: 'An Example',
-//     people: [
-//         { name: 'Gandalf'},
-//         { name: 'Frodo' },
-//         { name: 'Hermione'}
-//     ]
-// };
+ var locals = {
+    title: 'An Example',
+    people: [
+        { name: 'Gandalf'},
+        { name: 'Frodo' },
+        { name: 'Hermione'}
+    ]
+};
 //nunjucks.configure('views', {noCache: true});
 // nunjucks.render('index.html', locals, function (err, output) {
 //     console.log(output);
@@ -30,6 +30,7 @@ app.use(function (req, res, next) {
 app.get('/', function(req, res) {
   // res.send('this is a sample!');
 
+  res.render( 'index', {title: locals.title , people: locals.people} );
   // res.render(nunjucks.render('index.html', locals, function (err, output) {
   //   console.log(output);
   // }));
