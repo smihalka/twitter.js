@@ -8,12 +8,13 @@ app.engine('html', nunjucks.render); // when giving html files to res.render, te
 nunjucks.configure('views',{noCache: true});
 
  var locals = {
-    title: 'An Example',
+    title: 'The Best Team Ever',
     people: [
-        { name: 'Gandalf'},
-        { name: 'Frodo' },
-        { name: 'Hermione'}
-    ]
+        { name: 'Lina'},
+        { name: 'Jing' },
+        { name: 'Shayne'}
+    ],
+    pGraph: 'So duh, Ofcourse'
 };
 //nunjucks.configure('views', {noCache: true});
 // nunjucks.render('index.html', locals, function (err, output) {
@@ -30,7 +31,7 @@ app.use(function (req, res, next) {
 app.get('/', function(req, res) {
   // res.send('this is a sample!');
 
-  res.render( 'index', {title: locals.title , people: locals.people} );
+  res.render( 'index', {title: locals.title , people: locals.people, pGraph: locals.pGraph} );
   // res.render(nunjucks.render('index.html', locals, function (err, output) {
   //   console.log(output);
   // }));
